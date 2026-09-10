@@ -1,0 +1,30 @@
+server:
+  port: 
+spring:
+  application:
+    name: tracepoint-c
+  config:
+    import: "optional:vault://,optional:file:.env[.properties]"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          default_schema: core
+  cloud:
+    vault:
+      uri: ${VAULT_ADDRESS}
+      authentication: TOKEN
+      token: ${VAULT_TOKEN}
+      kv:
+        enabled: true
+        backend: ${VAULT_MOUNT}
+        application-name: ${VAULT_PATH}
+      ssl:
+        trust-store: ${TRUSTSTORE_PATH}
+        trust-store-password: ${TRUSTSTORE_PASS}
+
+
