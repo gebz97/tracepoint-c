@@ -9,4 +9,5 @@ import lombok.Setter;
 public class LifecycleEnvironment {
     @Id
     private String name;
+    private String description;
 }
